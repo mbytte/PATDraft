@@ -5,7 +5,9 @@
  */
 package Puzzle;
 import Puzzle.MainUI.*;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import javax.accessibility.AccessibleContext;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -31,16 +33,17 @@ public class Backend
     }
     
     //picture swapper
-    public void PictureSwap(JButton button1, JButton button2)
+    public void pictureSwap(JButton button1, JButton button2)
     {    
         //getting the photo description from each button
         String button1Icon = ((ImageIcon)button1.getIcon()).getDescription();
+        System.out.println(button1Icon);
         String button2Icon = ((ImageIcon)button1.getIcon()).getDescription();
         //AccessibleContext button2Icon = ((ImageIcon)button2.getIcon()).getAccessibleContext();
         //AccessibleContext button1Icon = ((ImageIcon)button1.getIcon()).getAccessibleContext();
         
         //return strings
-        //String 1 = button1Icon;
+        //String btn1 = button1Icon;
         
         button2.setIcon(new ImageIcon(getClass().getResource(button1Icon)));
         button1.setIcon(new ImageIcon(getClass().getResource(button2Icon)));
@@ -52,7 +55,11 @@ public class Backend
         
         //button2.setIcon(new ImageIcon(getClass().getResource("/images/1.jpg" )));
         
-        
+        //test
+        //BufferedImage button1Icon = new BufferedImage(button1.getWidth(),button1.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        //Graphics2D button1Pic = button1Icon.createGraphics();
+        //button2.printAll(button1Pic);
+        //button2.setIcon(button1Icon));
         
         //return button1Icon;
         //return button2Icon;

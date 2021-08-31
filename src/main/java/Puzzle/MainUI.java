@@ -121,12 +121,12 @@ public class MainUI extends javax.swing.JFrame
         
         //making variables for the photo descriptions to be put into
         
-        
+        //frame2.setIcon(new ImageIcon(getClass().getResource("/images/1.jpg")));
         //swapping the pictures
-        PictureSwap.PictureSwap(frame2, frame3);
+        PictureSwap.pictureSwap(frame2, frame3);
        
        //test to check if code is run
-       //frame2.setIcon(new ImageIcon(getClass().getResource("/images/1.jpg")));
+       
     }//GEN-LAST:event_frame2ActionPerformed
 
     /**
