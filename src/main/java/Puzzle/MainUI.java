@@ -6,6 +6,7 @@
 package Puzzle;
 import Puzzle.Backend.*;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -119,13 +120,16 @@ public class MainUI extends javax.swing.JFrame
         Backend PictureSwap;
         PictureSwap = new Backend();
         
+        Backend pictureRandomiser;
+        pictureRandomiser = new Backend();
+        pictureRandomiser.pictureRandomiser(frame2);
         //making variables for the photo descriptions to be put into
         
         //frame2.setIcon(new ImageIcon(getClass().getResource("/images/1.jpg")));
         //swapping the pictures
-        PictureSwap.pictureSwap(frame2, frame3);
+        //PictureSwap.pictureSwap(frame2, frame3);
        
-       //test to check if code is run
+        //test to check if code is run
        
     }//GEN-LAST:event_frame2ActionPerformed
 
