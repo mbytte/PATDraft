@@ -20,12 +20,17 @@ public class MainUI extends javax.swing.JFrame
      */
     
     //screen variables
-    public ImageIcon image1 = new ImageIcon("/images/1.jpeg");
+    
+    public static String frame1Str = "frame1";
+    public static String frame2Str = "frame2";
+    public static String frame3Str = "frame3";
+    public static String frame4Str = "frame4";
+    public static String frame5Str = "frame5";
     
     public MainUI() 
     {
         initComponents();
-        setLocation(0,0);
+       
     }
 
     /**
@@ -39,35 +44,35 @@ public class MainUI extends javax.swing.JFrame
     {
 
         jLabel2 = new javax.swing.JLabel();
+        frame0 = new javax.swing.JButton();
         frame1 = new javax.swing.JButton();
         frame2 = new javax.swing.JButton();
         frame3 = new javax.swing.JButton();
         frame4 = new javax.swing.JButton();
         frame5 = new javax.swing.JButton();
-        frame6 = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        frame1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1.jpg"))); // NOI18N
+        frame0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/0.jpg"))); // NOI18N
 
-        frame2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/2.jpg"))); // NOI18N
-        frame2.addActionListener(new java.awt.event.ActionListener()
+        frame1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1.jpg"))); // NOI18N
+        frame1.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                frame2ActionPerformed(evt);
+                frame1ActionPerformed(evt);
             }
         });
+
+        frame2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/2.jpg"))); // NOI18N
 
         frame3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3.jpg"))); // NOI18N
 
         frame4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/4.jpg"))); // NOI18N
 
         frame5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/5.jpg"))); // NOI18N
-
-        frame6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/6.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,18 +82,18 @@ public class MainUI extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(frame0, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(frame1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(frame2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(frame3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(frame4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(frame2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(frame3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(frame5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(frame4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(278, 278, 278)
-                        .addComponent(frame6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(frame5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,41 +102,40 @@ public class MainUI extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(frame3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(frame6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(frame2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(frame5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(frame1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(frame4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(frame4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(frame0, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(frame3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void frame2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_frame2ActionPerformed
-    {//GEN-HEADEREND:event_frame2ActionPerformed
+    private void frame1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_frame1ActionPerformed
+    {//GEN-HEADEREND:event_frame1ActionPerformed
         //making PictureSwap an object
         Backend PictureSwap;
-        PictureSwap = new Backend();
-        
-        Backend pictureRandomiser;
-        pictureRandomiser = new Backend();
-        pictureRandomiser.pictureRandomiser(frame2);
+        PictureSwap = new Backend();     
+        //Backend pictureRandomiser;
+        //pictureRandomiser = new Backend();
+        //pictureRandomiser.pictureRandomiser(frame1);
         //making variables for the photo descriptions to be put into
         
         //frame2.setIcon(new ImageIcon(getClass().getResource("/images/1.jpg")));
         //swapping the pictures
-        //PictureSwap.pictureSwap(frame2, frame3);
+        PictureSwap.pictureSwap(frame1, frame2, frame1Str, frame2Str);
        
         //test to check if code is run
        
-    }//GEN-LAST:event_frame2ActionPerformed
+    }//GEN-LAST:event_frame1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,12 +176,12 @@ public class MainUI extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton frame0;
     private javax.swing.JButton frame1;
     private javax.swing.JButton frame2;
     private javax.swing.JButton frame3;
     private javax.swing.JButton frame4;
     private javax.swing.JButton frame5;
-    private javax.swing.JButton frame6;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
