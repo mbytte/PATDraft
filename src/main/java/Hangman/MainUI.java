@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UIVersions;
-import UIVersions.HangmanMethods.*;
-import static UIVersions.HangmanMethods.Win;
+package Hangman;
 import javax.swing.JTextField;
 /**
  *
  * @author jilly
  */
-public class HangmanUI extends javax.swing.JFrame
+public class MainUI extends javax.swing.JFrame
 {
     /**
      * Creates new form HangmanUI
      */
-    public HangmanUI()
+    public MainUI()
     {
         initComponents();
     }
@@ -35,11 +33,11 @@ public class HangmanUI extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         LetterGuess = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        WrongLetters = new javax.swing.JTextPane();
+        wrongLettersDisplay = new javax.swing.JScrollPane();
+        wrongLetters = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        wordDisplay = new javax.swing.JTextPane();
+        wordDisplay = new javax.swing.JScrollPane();
+        word = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,11 +54,14 @@ public class HangmanUI extends javax.swing.JFrame
 
         jLabel2.setText("Guess here:");
 
-        jScrollPane4.setViewportView(WrongLetters);
+        wrongLettersDisplay.setViewportView(wrongLetters);
 
         jLabel3.setText("Letters guessed:");
 
-        jScrollPane5.setViewportView(wordDisplay);
+        word.setEditable(false);
+        word.setColumns(20);
+        word.setRows(5);
+        wordDisplay.setViewportView(word);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,37 +70,38 @@ public class HangmanUI extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
-                    .addComponent(LetterGuess)
+                    .addComponent(wordDisplay)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(0, 52, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(AnswerButton))
-                    .addComponent(jScrollPane5))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(wrongLettersDisplay)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(LetterGuess, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(AnswerButton))
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
+                .addGap(3, 3, 3)
+                .addComponent(wordDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LetterGuess, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AnswerButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(AnswerButton)
+                    .addComponent(LetterGuess, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(wrongLettersDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -109,8 +111,8 @@ public class HangmanUI extends javax.swing.JFrame
     private void AnswerButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_AnswerButtonActionPerformed
     {//GEN-HEADEREND:event_AnswerButtonActionPerformed
         //get answer from LetterGuess
-        LetterCheck(LetterGuess);
-        Win();
+        Backend.LetterCheck(LetterGuess);
+        Backend.Win();
         
         
     }//GEN-LAST:event_AnswerButtonActionPerformed
@@ -137,17 +139,18 @@ public class HangmanUI extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(HangmanUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(HangmanUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(HangmanUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(HangmanUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -155,7 +158,7 @@ public class HangmanUI extends javax.swing.JFrame
         {
             public void run()
             {
-                new HangmanUI().setVisible(true);
+                new MainUI().setVisible(true);
             }
         });
         
@@ -165,13 +168,13 @@ public class HangmanUI extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AnswerButton;
     private javax.swing.JTextField LetterGuess;
-    private javax.swing.JTextPane WrongLetters;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextPane wordDisplay;
+    private javax.swing.JTextArea word;
+    private javax.swing.JScrollPane wordDisplay;
+    private javax.swing.JTextPane wrongLetters;
+    private javax.swing.JScrollPane wrongLettersDisplay;
     // End of variables declaration//GEN-END:variables
 
     private void LetterCheck(JTextField LetterGuess)

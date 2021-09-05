@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package Puzzle;
-import Puzzle.MainUI.*;
-import java.awt.Image;
-import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -15,49 +12,21 @@ import javax.swing.JButton;
  * @author Meganl
  */
 public class Backend 
-{
-    //get picture reference 
-    //String desc = ((ImageIcon)button.getIcon()).getDescription();
-    //if(desc.equals(image1.getDescription())
-    
-    //variables 
-    //each image is in the numbered place that their screen variable is in
+{   
+    //CLASS 
+    //class variables
+    public static String[] currentPicOrder = {"/images/3.jpg", "/images/5.jpg", "/images/2.jpg", "/images/1.jpg", "/images/0.jpg", "/images/4.jpg"};
     
     
-    //variables
-    public static String[] currentPic = {"/images/0.jpg", "/images/1.jpg", "/images/2.jpg", "/images/3.jpg", "/images/4.jpg", "/images/5.jpg"};
-    
-    //picture randomiser
-    /*public JButton pictureRandomiser(JButton frame)
-    {
-        String[] images = new String[6];
-        images[0] = "/images/0.jpg";
-        images[1] = "/images/1.jpg";
-        images[2] = "/images/2.jpg";
-        images[3] = "/images/3.jpg";
-        images[4] = "/images/4.jpg";
-        images[5] = "/images/5.jpg";
-        frame.setIcon(new ImageIcon(getClass().getResource(images[0])));
-        return frame;
-    }
-    */
-    
+    //METHODS
+    //gets the current picture being presented on a specific jbutton
     public static String getPic(String screenStr)
     {
         //getting the screen number
         int screenNumber = getScreenNumber(screenStr);
         
-        //getting the image that is place of the screen
-        /*String[] images = new String[6];
-        images[0] = "/images/0.jpg";
-        images[1] = "/images/1.jpg";
-        images[2] = "/images/2.jpg";
-        images[3] = "/images/3.jpg";
-        images[4] = "/images/4.jpg";
-        images[5] = "/images/5.jpg";*/
-        
         //setting the image to screenIcon
-        String screenIcon = currentPic[screenNumber];
+        String screenIcon = currentPicOrder[screenNumber];
         
         //returning screenIcon to be able to use the file paths of the images
         return screenIcon;   
@@ -69,31 +38,20 @@ public class Backend
     {
         int screenNumber = 0;
         //getting the screen number depending on which screen is in question
-        if(screenStr.equals("frame1"))
+        switch (screenStr)
         {
-            screenNumber = 1;
-        }
-        if(screenStr.equals("frame2"))
-        {
-            screenNumber = 2;
-        }
-        if(screenStr.equals("frame3"))
-        {
-            screenNumber = 3;
-        }
-        if(screenStr.equals("frame4"))
-        {
-            screenNumber = 4;
-        }
-        if(screenStr.equals("frame5"))
-        {
-            screenNumber = 5;
+            case "frame1" -> screenNumber = 1;
+            case "frame2" -> screenNumber = 2;
+            case "frame3" -> screenNumber = 3;
+            case "frame4" -> screenNumber = 4;
+            case "frame5" -> screenNumber = 5;
+            //no default because it will never be used
         }
         return screenNumber;
     }
     
     
-    //picture swapper
+    //swaps two buttons' pictures
     public void pictureSwap(JButton button1, JButton button2, String button1Str, String button2Str)
     {    
         //getting the image icons in those current buttons
@@ -106,12 +64,61 @@ public class Backend
         
         //setting the current image array to be updated according to what images are there
         int btn1ScreenNumber = getScreenNumber(button1Str);
-        currentPic[btn1ScreenNumber] = button2Icon;
+        currentPicOrder[btn1ScreenNumber] = button2Icon;
         int btn2ScreenNumber = getScreenNumber(button2Str);
-        currentPic[btn2ScreenNumber] = button1Icon;
-        System.out.println(Arrays.toString(currentPic));
-
+        currentPicOrder[btn2ScreenNumber] = button1Icon;
     }
-    //check if pic3 is next to picture check (pic3 is blank)
     
+    
+    //finds what position the blank picture(pic2) is currently in
+    public static int getBlankPicPos()
+    {
+        //variables
+        int blankPicPos = 0;
+        String blankPic = "/images/2.jpg";  //the blank picture is saved as "/images/2.jpg"
+        
+        //looking through all the positions in the ray to find which one is the blank picture
+        //loops 6 times because there are 6 positions
+        for(int i = 0; i < 6; i++)
+        {
+            if(blankPic.equals(currentPicOrder[i]))
+            {
+                blankPicPos = i;
+            }
+        }    
+        return blankPicPos;
+    }
+    
+    
+    //checks if the order that the user has arranged the pictures in is the exact way they are supposed to be arranged
+    public static void winCheck()
+    {
+        //variables
+        //the order that the pictures should be arranged in in order for the player to win
+        String[] correctOrder = new String[6];
+        correctOrder[0] = "/images/0.jpg";
+        correctOrder[1] = "/images/1.jpg";
+        correctOrder[2] = "/images/2.jpg";
+        correctOrder[3] = "/images/3.jpg";
+        correctOrder[4] = "/images/4.jpg";
+        correctOrder[5] = "/images/5.jpg";
+        //changeable variable
+        int numCorrectPicPlace = 0;
+        
+        
+        //check to see if everything is the same
+        for(int i = 0; i < 6; i++)
+        {
+            if(currentPicOrder[i].equals(correctOrder[i]))
+            {
+                numCorrectPicPlace++;
+            }
+        }
+        
+        //winning screen displayed if all the pictures were in the same place
+        if(numCorrectPicPlace == 6)
+        {
+            new Puzzle.WinningScreen().setVisible(true);
+        }
+    }
 }

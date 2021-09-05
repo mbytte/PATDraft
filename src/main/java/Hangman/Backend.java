@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UIVersions;
-import UIVersions.*;
+package Hangman;
 
 /**
  *
  * @author jilly
  */
-public class HangmanMethods
+public class Backend
 {   
     //variables
     public static String[] word = {"c", "a", "t"};
@@ -62,7 +61,7 @@ public class HangmanMethods
     {
     if(origWordTotalAsciiValue == guessWordAsciiValue)
             {
-                new WinninScreen().setVisible(true);
+                new WinningScreen().setVisible(true);
             }
     }
     
